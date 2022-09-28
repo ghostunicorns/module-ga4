@@ -1,0 +1,22 @@
+<?php
+use Magento\GoogleTagManager\Model\Config\TagManagerConfig;
+use Magento\GoogleTagManager\Helper\CookieData;
+
+/** @var \Magento\GoogleTagManager\Block\ListJson $block */
+/**@var array $blockNames */
+$blockNames = json_encode(array_values((array)$block->getData('impression_block_list')));
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "GhostUnicorns_Ga4/js/google-tag-manager-cart": {
+                "blockNames": <?= /* @noEscape */ $blockNames ?>,
+                "cookieAddToCart": "<?= /* @noEscape */ TagManagerConfig::GOOGLE_ANALYTICS_COOKIE_NAME ?>",
+                "cookieRemoveFromCart":
+                    "<?= /* @noEscape */ TagManagerConfig::GOOGLE_ANALYTICS_COOKIE_REMOVE_FROM_CART ?>",
+                "advancedAddToCart": "<?= /* @noEscape */ CookieData::GOOGLE_ANALYTICS_COOKIE_ADVANCED_NAME ?>"
+            }
+        }
+    }
+</script>

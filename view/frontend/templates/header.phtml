@@ -1,0 +1,18 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \GhostUnicorns\Ga4\ViewModel\Header $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+
+<!-- GA4 Base info - START -->
+<script>
+	window.GA4 = window.GA4 || [];
+
+    window.GA4.storeName = <?php echo $viewModel->getStoreName() ?>;
+    window.GA4.currencyCode = "<?php echo $viewModel->getCurrentCurrencyCode() ?>";
+
+    window.GA4.configurableProduct = <?php echo $viewModel->getSuper() ?>;
+    window.GA4.configurableProducts = <?php echo $viewModel->getConfigurableSimples() ?>;
+    window.GA4.bundleProduct = <?php echo $viewModel->getBundle() ?>;
+</script>
+<!-- GA4 Base info - START -->

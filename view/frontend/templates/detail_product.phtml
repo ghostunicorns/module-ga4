@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\GoogleTagManager\Block\ListJson $block */
+$product = $block->getCurrentProduct();
+/** @var \GhostUnicorns\Ga4\ViewModel\ProductList $viewModel */
+$viewModel = $block->getViewModel();
+$productData = $viewModel->getProductLayer($product->getSku());
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "GhostUnicorns_Ga4/js/actions/product-detail": <?= $productData ?>
+        }
+    }
+</script>

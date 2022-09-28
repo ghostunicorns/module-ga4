@@ -1,0 +1,13 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \GhostUnicorns\Ga4\ViewModel\CartLayer $viewModel */
+$viewModel = $block->getData('view_model');
+$eventLayer = $viewModel->getCartLayers();
+?>
+
+<!-- GA4 Cart Layer - START -->
+<script class="ga4_events">
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(<?= $eventLayer ?>);
+</script>
+<!-- GA4 Cart Layer - END -->

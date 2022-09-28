@@ -1,0 +1,13 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="ga4_cart_view" after="-"
+                   template="GhostUnicorns_Ga4::cart_view.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GhostUnicorns\Ga4\ViewModel\CartLayer</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

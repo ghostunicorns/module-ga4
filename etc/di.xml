@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="ga4_add_product_info_to_customer_data_cart"
+                type="GhostUnicorns\Ga4\Plugin\AddProductInfoToCustomerDataCart"
+                sortOrder="999"/>
+    </type>
+    <type name="GhostUnicorns\Ga4\Plugin\AddProductInfoToCustomerDataCart">
+        <arguments>
+            <argument name="itemVariant" xsi:type="string">swatch_color</argument>
+            <argument name="itemSize" xsi:type="string">size</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GoogleTagManager\Block\ListJson">
+        <plugin name="ga4_get_cart_content"
+                type="GhostUnicorns\Ga4\Plugin\GetCartContentPlugin"/>
+    </type>
+    <type name="Magento\GoogleTagManager\Block\GtagGa">
+        <plugin name="ga4_checkout_success"
+                type="GhostUnicorns\Ga4\Plugin\CheckoutSuccessPlugin"/>
+    </type>
+</config>

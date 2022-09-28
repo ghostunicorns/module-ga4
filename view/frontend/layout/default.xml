@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="head.additional">
+            <block name="ga4_header"
+                   template="GhostUnicorns_Ga4::header.phtml"
+                   after="google_gtag_analyticsgtm"
+                   ifconfig="google/gtag/analytics4/active">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GhostUnicorns\Ga4\ViewModel\Header</argument>
+                </arguments>
+            </block>
+            <block name="ga4_generic_layer"
+                   template="GhostUnicorns_Ga4::generic_layer.phtml"
+                   before="google_gtag_analyticsgtm"
+                   ifconfig="google/gtag/analytics4/active">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GhostUnicorns\Ga4\ViewModel\GenericLayer</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="after.body.start">
+            <block name="google.tagmanager.gtag.js"
+                   template="GhostUnicorns_Ga4::js.phtml"
+                   ifconfig="google/gtag/analytics4/active">
+                <arguments>
+                    <argument name="impression_block_list" xsi:type="array">
+                        <item name="list" xsi:type="string">category.products.list</item>
+                        <item name="upsell" xsi:type="string">product.info.upsell</item>
+                        <item name="related" xsi:type="string">catalog.product.related</item>
+                        <item name="crosssell" xsi:type="string">checkout.cart.crosssell</item>
+                        <item name="search" xsi:type="string">search_result_list</item>
+                    </argument>
+                </arguments>
+            </block>
+            <block name="ga4_events_layer"
+                   template="GhostUnicorns_Ga4::events_layer.phtml"
+                   after="-"
+                   ifconfig="google/gtag/analytics4/active">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GhostUnicorns\Ga4\ViewModel\EventsLayer</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \GhostUnicorns\Ga4\ViewModel\EventsLayer $viewModel */
+$viewModel = $block->getData('view_model');
+$eventsLayer = $viewModel->getEventsLayers();
+?>
+
+<!-- GA4 Events Layer - START -->
+<script class="ga4_events">
+    <?php foreach ($eventsLayer as $eventLayer) : ?>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(<?= $eventLayer ?>);
+    <?php endforeach; ?>
+</script>
+<!-- GA4 Events Layer - END -->
