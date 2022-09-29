@@ -9,6 +9,7 @@ define([
         $.ajax({
             url: url.build('ga4/events'),
             dataType: 'json',
+            cache: false,
             success: function (res) {
                 if (!res.hasOwnProperty('events')) {
                     return;

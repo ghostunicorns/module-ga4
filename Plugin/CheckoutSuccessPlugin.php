@@ -83,8 +83,6 @@ class CheckoutSuccessPlugin
 
             $result[] = [
                 'event' => 'purchase',
-                'payment_type' => $order->getPayment()->getMethod(),
-                'shipping_tier' => $order->getShippingMethod(),
                 'ecommerce' => [
                     'currency' => $this->getCurrencyCode->execute(),
                     'value' => (float)$order->getGrandTotal(),
@@ -92,6 +90,8 @@ class CheckoutSuccessPlugin
                     'shipping' => (float)$order->getShippingInclTax(),
                     'transaction_id' => $order->getIncrementId(),
                     'coupon' => (string)$order->getCouponCode(),
+                    'payment_type' => $order->getPayment()->getMethod(),
+                    'shipping_tier' => $order->getShippingMethod(),
                     'items' => $products
                 ]
             ];

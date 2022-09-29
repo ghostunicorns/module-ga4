@@ -153,6 +153,6 @@ class ProductManager {
         $product = $this->productFactory->create();
         $this->resourceProduct->load($product, $productId);
 
-        return (float)$product->getPrice();
+        return (float)$product->getFinalPrice();
     }
 }

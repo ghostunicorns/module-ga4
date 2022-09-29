@@ -4,7 +4,7 @@ This module adjust the GTM pushes to be compatible with the new GA4 ecommerce st
 
 # Install
 
-`composer require ghostunicorns/module-ga4`
+`composer require ghost-unicorns/module-ga4`
 
 # How to configure
 Make sure that Google Analytics 4 through Google GTag is enabled 

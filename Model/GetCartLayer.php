@@ -71,7 +71,7 @@ class GetCartLayer
 
         return [
             'event' => 'view_cart',
-            'cart_type' => $isMiniCart ? 'min_cart' : 'cart',
+            'cart_type' => $isMiniCart ? 'mini_cart' : 'cart',
             'ecommerce' => [
                 'currency' => $this->getCurrencyCode->execute(),
                 'value' => $cartTotal,

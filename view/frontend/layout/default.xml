@@ -43,5 +43,12 @@
                 </arguments>
             </block>
         </referenceContainer>
+
+        <referenceContainer name="header-wrapper">
+            <block name="ga4_minicart"
+                   template="GhostUnicorns_Ga4::minicart_view.phtml"
+                   after="minicart"
+                   ifconfig="google/gtag/analytics4/active" />
+        </referenceContainer>
     </body>
 </page>

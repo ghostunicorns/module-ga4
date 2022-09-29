@@ -24,7 +24,7 @@ define([
             if (!shippingTier) {
                 return false;
             }
-            dlUpdate.shipping_tier = shippingTier;
+            dlUpdate.ecommerce.shipping_tier = shippingTier;
         }
 
         if (stepIndex === '3') {
@@ -32,7 +32,7 @@ define([
             if (!paymentMethod) {
                 return false;
             }
-            dlUpdate.payment_type = paymentMethod;
+            dlUpdate.ecommerce.payment_type = paymentMethod;
         }
 
         for (i; i < cart.length; i++) {

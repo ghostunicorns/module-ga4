@@ -8,7 +8,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class GetProductLayer
 {
-    const DEFAULT_VALUE = -9999.0;
+    const DEFAULT_VALUE = -99999.99;
 
     /**
      * @var ProductManager
@@ -67,21 +67,21 @@ class GetProductLayer
         $variant = $this->productManager->getProductAttributeValue($sku, 'swatch_color');
         $size = $this->productManager->getProductAttributeValue($sku, 'size');
 
-        $data['item_id'] = $parentSku;
-        $data['item_name'] = $this->productManager->getProductName($parentSku);
-        $data['currency'] = $this->getCurrencyCode->execute();
+        $data['item_id'] = (string)$parentSku;
+        $data['item_name'] = (string)$this->productManager->getProductName($parentSku);
+        $data['currency'] = (string)$this->getCurrencyCode->execute();
         $data['price'] = $price !== self::DEFAULT_VALUE ? (float)$price : (float)$this->productManager->getProductPrice($sku);
-        $data['item_brand'] = $brand;
-        $data['item_category'] = $category1;
-        $data['item_category2'] = $category2;
-        $data['item_category3'] = $category3;
-        $data['item_category4'] = $category4;
-        $data['item_category5'] = $category5;
-        $data['item_variant'] = $variant;
-        $data['item_size'] = $size;
+        $data['item_brand'] = (string)$brand;
+        $data['item_category'] = (string)$category1;
+        $data['item_category2'] = (string)$category2;
+        $data['item_category3'] = (string)$category3;
+        $data['item_category4'] = (string)$category4;
+        $data['item_category5'] = (string)$category5;
+        $data['item_variant'] = (string)$variant;
+        $data['item_size'] = (string)$size;
 
         if ($quantity > 0) {
-            $data['quantity'] = $quantity;
+            $data['quantity'] = (float)$quantity;
         }
 
         if ($discount === self::DEFAULT_VALUE) {
@@ -89,7 +89,7 @@ class GetProductLayer
         }
 
         if ($discount !== self::DEFAULT_VALUE && $discount !== 0.0) {
-            $data['discount'] = $discount;
+            $data['discount'] = (float)$discount;
         }
 
         return $data;
