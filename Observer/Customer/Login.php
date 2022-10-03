@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace GhostUnicorns\Ga4\Observer\Customer;
 
-use GhostUnicorns\Ga4\Model\Event\GetCustomerRegisterEvent;
+use GhostUnicorns\Ga4\Model\Event\GetCustomerLoginEvent;
 use Magento\Customer\Model\Session;
 use Magento\Customer\Model\SessionFactory;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Serialize\SerializerInterface;
 
-class Register implements ObserverInterface
+class Login implements ObserverInterface
 {
 	/**
 	 * @var Session
@@ -41,12 +41,11 @@ class Register implements ObserverInterface
      */
 	public function execute(EventObserver $observer)
 	{
-		if ($customer = $observer->getCustomer()) {
+		if ($customer = $observer->getEvent()->getCustomer()) {
 			$this->session->setData(
-                GetCustomerRegisterEvent::EVENT_NAME,
+                GetCustomerLoginEvent::EVENT_NAME,
                 $this->serializer->serialize([
-                    'event' => 'new_registration',
-                    'new_registration_result' => 'OK',
+                    'event' => 'login',
                     'user_email_md5' =>  hash('md5', $customer->getEmail()),
                     'user_email_sha256' =>  hash('sha256', $customer->getEmail())
                 ])

@@ -74,7 +74,7 @@ class GetCartLayer
             'cart_type' => $isMiniCart ? 'mini_cart' : 'cart',
             'ecommerce' => [
                 'currency' => $this->getCurrencyCode->execute(),
-                'value' => $cartTotal,
+                'value' => (float)$cartTotal,
                 'items' => $products
             ]
         ];

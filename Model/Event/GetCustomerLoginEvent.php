@@ -5,10 +5,10 @@ namespace GhostUnicorns\Ga4\Model\Event;
 
 use Magento\Customer\Model\Session;
 
-class GetNewsletterSubscriptionEvent
+class GetCustomerLoginEvent
 {
     /** @var string */
-    public const EVENT_NAME = 'newsletter_subscription';
+    public const EVENT_NAME = 'customer_login_event';
 
     /**
      * @var Session

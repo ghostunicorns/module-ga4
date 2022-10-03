@@ -1,25 +1,43 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var \GhostUnicorns\Ga4\ViewModel\GenericLayer $viewModel */
-$viewModel = $block->getData('view_model');
+/** @var GenericLayer $viewModel */
+use GhostUnicorns\Ga4\ViewModel\GenericLayer;$viewModel = $block->getData('view_model');
+$loginStatus = $viewModel->getLoginStatus();
 ?>
 
 <!-- GA4 Generic Layer (before the ga4 init) - START -->
 <script>
     window.dataLayer = window.dataLayer || [];
     const genericLayer = {
-        'login_status': '<?= $viewModel->getLoginStatus() ?>',
+        'login_status': '<?= $loginStatus ?>',
         'page_type': '<?= $viewModel->getPageType() ?>',
         'site_area': '<?= $viewModel->getSiteArea() ?>',
         'ecommerce_area': '<?= $viewModel->getEcommerceArea() ?>',
         'page_language': '<?= $viewModel->getLanguage() ?>',
     };
-    <?php if ($userEmailMd5 = $viewModel->getUserEmailMd5()): ?>
-    genericLayer['user_email_md5'] = '<?= $userEmailMd5  ?>';
+    <?php if ($loginStatus === GenericLayer::STATUS_LOGGED) : ?>
+        try {
+            const userEmailMd5 = window.localStorage.getItem('uEM');
+            if (userEmailMd5) {
+                genericLayer['user_email_md5'] = userEmailMd5;
+            }
+
+            const userEmailSha256 = window.localStorage.getItem('uES');
+            if (userEmailSha256) {
+                genericLayer['user_email_sha256'] = userEmailSha256;
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    <?php else: ?>
+        try {
+            window.localStorage.removeItem('uEM');
+            window.localStorage.removeItem('uES');
+        } catch (e) {
+            console.log(e);
+        }
     <?php endif; ?>
-    <?php if ($userEmailSha256 = $viewModel->getUserEmailSha256()): ?>
-    genericLayer['user_email_sha256'] = '<?= $userEmailSha256  ?>';
-    <?php endif; ?>
+
     window.dataLayer.push(genericLayer);
 </script>
 <!-- GA4 Generic Layer (before the ga4 init) - END -->

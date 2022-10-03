@@ -28,21 +28,29 @@ class GetAllEvents
     private $serializer;
 
     /**
+     * @var GetCustomerLoginEvent
+     */
+    private $getCustomerLoginEvent;
+
+    /**
      * @param GetCustomerRegisterEvent $getCustomerRegisterEvent
      * @param GetNewsletterSubscriptionEvent $getNewsletterSubscriptionEvent
      * @param GetCartUpdateEvents $getCartUpdateEvents
      * @param SerializerInterface $serializer
+     * @param GetCustomerLoginEvent $getCustomerLoginEvent
      */
     public function __construct(
         GetCustomerRegisterEvent $getCustomerRegisterEvent,
         GetNewsletterSubscriptionEvent $getNewsletterSubscriptionEvent,
         GetCartUpdateEvents $getCartUpdateEvents,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        GetCustomerLoginEvent $getCustomerLoginEvent
     ) {
         $this->getCustomerRegisterEvent = $getCustomerRegisterEvent;
         $this->getNewsletterSubscriptionEvent = $getNewsletterSubscriptionEvent;
         $this->getCartUpdateEvents = $getCartUpdateEvents;
         $this->serializer = $serializer;
+        $this->getCustomerLoginEvent = $getCustomerLoginEvent;
     }
 
     /**
@@ -70,14 +78,14 @@ class GetAllEvents
             $events[] = $customerRegisterEvent;
         }
 
+        $customerLoginEvent = $this->getCustomerLoginEvent->execute();
+        if ($customerLoginEvent) {
+            $events[] = $customerLoginEvent;
+        }
+
 //        $contactEvent = $this->getContactEvent->execute();
 //        if ($contactEvent) {
 //            $events[] = $contactEvent;
-//        }
-//
-//        $customerLoginEvent = $this->getCustomerLoginEvent->execute();
-//        if ($customerLoginEvent) {
-//            $events[] = $customerLoginEvent;
 //        }
 
         return $events;

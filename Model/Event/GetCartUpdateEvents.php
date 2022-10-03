@@ -24,6 +24,9 @@ class GetCartUpdateEvents
         $this->session = $session;
     }
 
+    /**
+     * @return string
+     */
     public function execute(): string
     {
         $event = $this->session->getData(self::EVENT_NAME);

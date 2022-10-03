@@ -2,6 +2,14 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="head.additional">
+            <block name="ga4_customer_login"
+                   template="GhostUnicorns_Ga4::customer_login.phtml"
+                   before="-"
+                   ifconfig="google/gtag/analytics4/active">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GhostUnicorns\Ga4\ViewModel\EventsLayer</argument>
+                </arguments>
+            </block>
             <block name="ga4_header"
                    template="GhostUnicorns_Ga4::header.phtml"
                    after="google_gtag_analyticsgtm"

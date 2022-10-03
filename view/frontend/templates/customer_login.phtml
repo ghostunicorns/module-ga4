@@ -1,0 +1,19 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \GhostUnicorns\Ga4\ViewModel\EventsLayer $viewModel */
+$viewModel = $block->getData('view_model');
+$loginInfo = $viewModel->getLoginInfo();
+?>
+
+<!-- GA4 Customer Login - START -->
+<script>
+    <?php if ($loginInfo): ?>
+    try {
+        window.localStorage.setItem('uEM', "<?= $loginInfo['user_email_md5'] ?>");
+        window.localStorage.setItem('uES', "<?= $loginInfo['user_email_sha256'] ?>");
+    } catch (e) {
+        console.log(e);
+    }
+    <?php endif; ?>
+</script>
+<!-- GA4 Customer Login - END -->

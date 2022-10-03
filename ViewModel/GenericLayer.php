@@ -14,6 +14,8 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class GenericLayer implements ArgumentInterface
 {
+    const STATUS_LOGGED = 'logged';
+    const STATUS_NOT_LOGGED = 'not_logged';
     /**
      * @var CategoryManager
      */
@@ -92,7 +94,7 @@ class GenericLayer implements ArgumentInterface
      */
     public function getLoginStatus(): string
     {
-        return $this->isCustomerLoggedIn->execute() ? 'logged' : 'not_logged';
+        return $this->isCustomerLoggedIn->execute() ? self::STATUS_LOGGED : self::STATUS_NOT_LOGGED;
     }
 
     /**

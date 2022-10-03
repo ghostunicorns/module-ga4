@@ -6,7 +6,6 @@ namespace GhostUnicorns\Ga4\Controller\ShowMiniCart;
 use GhostUnicorns\Ga4\Model\GetCartLayer;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\Serialize\SerializerInterface;
 
 class Index implements ActionInterface
 {

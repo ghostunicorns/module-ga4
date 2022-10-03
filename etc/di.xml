@@ -5,12 +5,6 @@
                 type="GhostUnicorns\Ga4\Plugin\AddProductInfoToCustomerDataCart"
                 sortOrder="999"/>
     </type>
-    <type name="GhostUnicorns\Ga4\Plugin\AddProductInfoToCustomerDataCart">
-        <arguments>
-            <argument name="itemVariant" xsi:type="string">swatch_color</argument>
-            <argument name="itemSize" xsi:type="string">size</argument>
-        </arguments>
-    </type>
     <type name="Magento\GoogleTagManager\Block\ListJson">
         <plugin name="ga4_get_cart_content"
                 type="GhostUnicorns\Ga4\Plugin\GetCartContentPlugin"/>

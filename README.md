@@ -2,6 +2,11 @@
 
 This module adjust the GTM pushes to be compatible with the new GA4 ecommerce standards 
 
+# Prerequisites
+Make sure you have Magento >= 2.4.5 or try install: 
+
+`composer require magento/module-google-tag-manager`
+
 # Install
 
 `composer require ghost-unicorns/module-ga4`
